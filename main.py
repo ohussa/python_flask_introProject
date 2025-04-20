@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import random
 app=Flask(__name__,static_url_path='/static')
 #static url, is address for static files, as we said webpages can change
 #but not png,js and other files
@@ -6,8 +7,11 @@ app=Flask(__name__,static_url_path='/static')
 #the @ is called a decorator
 @app.route('/')
 def index():
+    roles_list=['philosopher','healer','warrior','emperor']
+    role=random.choice(roles_list)
+
     #means serve client this html page
-    return render_template('welcome.html')
+    return render_template(role+'.html')
 
 #start the server, host 0.0.0.0 is allow connections from anywhere
 #port 8080 means what port of computer should people use to connect
